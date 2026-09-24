@@ -1,0 +1,42 @@
+# Copy to config.yaml and fill in your data:  cp config.example.yaml config.yaml
+# config.yaml is gitignored — it holds your personal/financial data.
+
+seller:
+  name: "Jan Kowalski"
+  nip: "PL1111111111"            # your NIP, with PL prefix
+  address: "ul. Przykładowa 1/2, 00-001 Warszawa, Poland"
+  bank_account: "PL61109010140000071219812874"   # IBAN
+  bic: "BREXPLPW"
+  bank_name: "Example Bank"
+
+buyer:
+  name: "Example Client AB"
+  reg_number: "556000-0000"
+  vat_id: "SE556000000001"       # EU VAT ID, with country prefix
+  address: "Kungsgatan 1, 111 43 Stockholm, Sweden"
+  ref_person: "Anna Svensson"    # contact person at the client (optional)
+
+invoice:
+  base_salary: 20000             # net monthly amount for a full month of work
+  tax_rate: 0.12                 # ryczałt rate, used for expense gross-up
+  payment_days: 7
+  currency: "PLN"
+  service_description: "Software development services"
+  unit: "month"
+  vat_type: "NP"
+  # Invoice number is derived from the month (one invoice/month): Jan -> 0001 ... Dec -> 0012.
+
+ksef:
+  test_url: "https://api-test.ksef.mf.gov.pl"
+  demo_url: "https://api-demo.ksef.mf.gov.pl"
+  prod_url: "https://ksef.mf.gov.pl"
+  default_env: "test"
+
+backup:
+  enabled: false                 # copy PDF/XML/UPO somewhere safe after prod submit
+  path: "/path/to/backup/invoices"
+  auto_after_prod_submit: true
+
+email:
+  recipient: "invoices@example.com"
+  subject_template: "invoice {invoice_number}/{year} for {month_name} {year}"

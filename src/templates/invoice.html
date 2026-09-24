@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="invoice.css">
+</head>
+<body>
+    <div class="invoice">
+        <!-- Header -->
+        <header>
+            <div class="header-band">
+                <span class="header-label">INVOICE</span>
+                <span class="header-number">#{{ invoice_number }}/{{ year }}</span>
+            </div>
+            <div class="header-meta">
+                <div class="meta-item"><span class="label">Issued on:</span> {{ issued_date }}</div>
+                <div class="meta-item"><span class="label">Selling date:</span> {{ selling_date }}</div>
+            </div>
+        </header>
+
+        <!-- Parties -->
+        <section class="parties">
+            <div class="party seller">
+                <h2>Seller</h2>
+                <p class="name">{{ seller.name }}</p>
+                <p>NIP {{ seller.nip }}</p>
+                <p>{{ seller.address }}</p>
+                <p class="bank">Account: {{ seller.bank_account }}</p>
+                <p>BIC/SWIFT: {{ seller.bic }}</p>
+            </div>
+            <div class="party buyer">
+                <h2>Buyer</h2>
+                <p class="name">{{ buyer.name }}</p>
+                <p>Reg. no {{ buyer.reg_number }}</p>
+                <p>{{ buyer.address }}</p>
+                <p>VAT: {{ buyer.vat_id }}</p>
+                <p>Ref: {{ ref_person }}</p>
+            </div>
+        </section>
+
+        <!-- Line items -->
+        <section class="items">
+            <table>
+                <colgroup>
+                    <col class="col-no">
+                    <col class="col-name">
+                    <col class="col-unit">
+                    <col class="col-qty">
+                    <col class="col-price">
+                    <col class="col-cur">
+                    <col class="col-net">
+                    <col class="col-vat">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Unit price</th>
+                        <th>Currency</th>
+                        <th>Net value</th>
+                        <th>VAT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>{{ service_description }}</td>
+                        <td>{{ unit }}</td>
+                        <td>{{ multiplier }}</td>
+                        <td>{{ base_salary }}</td>
+                        <td>{{ currency }}</td>
+                        <td>{{ net_value }}</td>
+                        <td>{{ vat_type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Summary -->
+        <section class="summary">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ currency }}</th>
+                        <th>Net Value</th>
+                        <th>VAT Value</th>
+                        <th>Gross Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ vat_type }}</td>
+                        <td class="right">{{ net_value }}</td>
+                        <td class="right">0.00</td>
+                        <td class="right">{{ net_value }}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>Total</strong></td>
+                        <td class="right"><strong>{{ net_value }}</strong></td>
+                        <td class="right"><strong>0.00</strong></td>
+                        <td class="right"><strong>{{ net_value }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Payment -->
+        <section class="payment">
+            <div class="payment-total">
+                <span class="label">Total payment:</span>
+                <span class="amount">{{ net_value }} {{ currency }}</span>
+            </div>
+            <table class="payment-info">
+                <tr>
+                    <td><span class="label">Payment method:</span> bank transfer</td>
+                    <td><span class="label">Payment deadline:</span> {{ payment_deadline }}</td>
+                </tr>
+                <tr>
+                    <td><span class="label">Account:</span> {{ seller.bank_account }}</td>
+                    <td><span class="label">BIC/SWIFT:</span> {{ seller.bic }}</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Legal note + KSeF -->
+        <footer>
+            <div class="footer-left">
+                <p class="legal">Reverse charge Art 44 VAT-Dir applies for clients within EU</p>
+                {% if ksef_number %}
+                <p class="ksef-info">KSeF: {{ ksef_number }}</p>
+                {% endif %}
+            </div>
+            {% if qr_code %}
+            <div class="qr-code">
+                <img src="{{ qr_code }}" alt="KSeF verification" />
+                <span class="qr-label">KSeF</span>
+            </div>
+            {% endif %}
+        </footer>
+    </div>
+</body>
+</html>

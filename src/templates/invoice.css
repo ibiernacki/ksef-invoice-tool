@@ -1,0 +1,287 @@
+@page {
+    size: A4;
+    margin: 28mm 22mm 20mm 22mm;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    color: #1a1a1a;
+    line-height: 1.45;
+}
+
+.invoice {
+    max-width: 100%;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+
+header {
+    margin-bottom: 22pt;
+}
+
+.header-band {
+    display: flex;
+    align-items: baseline;
+    gap: 10pt;
+    padding-bottom: 10pt;
+    border-bottom: 2pt solid #1a1a1a;
+}
+
+.header-label {
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 2.5pt;
+    color: #999;
+}
+
+.header-number {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: -0.3pt;
+    color: #1a1a1a;
+}
+
+.header-meta {
+    display: flex;
+    gap: 24pt;
+    padding-top: 6pt;
+    font-size: 8pt;
+    color: #666;
+}
+
+.header-meta .label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* ── Parties ────────────────────────────────────────── */
+
+.parties {
+    display: flex;
+    gap: 40pt;
+    margin-bottom: 24pt;
+}
+
+.party {
+    flex: 1;
+}
+
+.party h2 {
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    color: #999;
+    margin-bottom: 6pt;
+}
+
+.party .name {
+    font-weight: 600;
+    font-size: 10pt;
+    margin-bottom: 2pt;
+}
+
+.party p {
+    font-size: 8.5pt;
+    color: #333;
+    line-height: 1.5;
+}
+
+.party .bank {
+    margin-top: 4pt;
+}
+
+/* ── Items table ────────────────────────────────────── */
+
+.items {
+    margin-bottom: 16pt;
+}
+
+.items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items thead tr {
+    background: #f5f5f5;
+}
+
+.items th {
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #666;
+    padding: 7pt 8pt;
+    text-align: left;
+    border-bottom: 1pt solid #ddd;
+}
+
+.items td {
+    padding: 10pt 8pt;
+    font-size: 9pt;
+    border-bottom: 1pt solid #eee;
+}
+
+.items col.col-no { width: 4%; }
+.items col.col-name { width: 28%; }
+.items col.col-unit { width: 9%; }
+.items col.col-qty { width: 11%; }
+.items col.col-price { width: 14%; }
+.items col.col-cur { width: 10%; }
+.items col.col-net { width: 14%; }
+.items col.col-vat { width: 10%; }
+
+.items td:nth-child(n+3),
+.items th:nth-child(n+3) {
+    text-align: right;
+}
+
+.items td:first-child,
+.items th:first-child {
+    text-align: center;
+}
+
+/* ── Summary table ──────────────────────────────────── */
+
+.summary {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24pt;
+}
+
+.summary table {
+    width: 55%;
+    border-collapse: collapse;
+}
+
+.summary th {
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #666;
+    padding: 6pt 8pt;
+    text-align: right;
+    border-bottom: 1pt solid #ddd;
+}
+
+.summary th:first-child {
+    text-align: left;
+}
+
+.summary td {
+    padding: 6pt 8pt;
+    font-size: 9pt;
+    border-bottom: 1pt solid #eee;
+}
+
+.summary td:first-child {
+    text-align: left;
+}
+
+.summary .total-row td {
+    border-top: 1.5pt solid #1a1a1a;
+    border-bottom: none;
+    padding-top: 8pt;
+}
+
+/* ── Payment ────────────────────────────────────────── */
+
+.payment {
+    background: #f8f8f8;
+    padding: 14pt 16pt;
+    border-radius: 4pt;
+    margin-bottom: 20pt;
+}
+
+.payment-total {
+    margin-bottom: 8pt;
+}
+
+.payment-total .label {
+    font-size: 8pt;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+}
+
+.payment-total .amount {
+    display: block;
+    font-size: 16pt;
+    font-weight: 700;
+    margin-top: 2pt;
+}
+
+.payment-info {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    color: #555;
+}
+
+.payment-info td {
+    padding: 3pt 0;
+    width: 50%;
+}
+
+.payment-info .label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+footer .legal {
+    font-size: 7.5pt;
+    color: #999;
+    font-style: italic;
+}
+
+footer .ksef-info {
+    font-size: 7pt;
+    color: #999;
+    margin-top: 3pt;
+    font-family: "Courier New", monospace;
+    letter-spacing: 0.2pt;
+}
+
+.qr-code {
+    text-align: center;
+}
+
+.qr-code img {
+    width: 60pt;
+    height: 60pt;
+}
+
+.qr-code .qr-label {
+    display: block;
+    font-size: 6pt;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    margin-top: 2pt;
+}
+
+/* ── Utilities ──────────────────────────────────────── */
+
+.center { text-align: center; }
+.right { text-align: right; }

@@ -1,0 +1,6 @@
+{
+  "skills": {
+    "invoice-wizard": ".claude/skills/invoice-wizard.md",
+    "invoice-manage": ".claude/skills/invoice-manage.md"
+  }
+}
